@@ -2,33 +2,24 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 async function test1() {
-  let array1;
   let arr;
-  await fetch(
+  return await fetch(
     "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
   )
     .then((words) => words.text())
     .then((textedWords) => {
-      array1 = textedWords.split("\n");
       arr = textedWords.replace(/\r\n/g, "\n").split("\n");
+      return arr;
     });
-  console.log("Array1: ");
-  console.log(array1);
-  console.log("arr: ");
-  console.log("hi");
 }
-test1();
+
 export default function App() {
-  // const [word, setWord] = useState();
-  // useEffect(() => {
-  //   fetch(
-  //     "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
-  //   )
-  //     .then((words) => words.text())
-  //     .then((textedWords) => {
-  //       setWord(textedWords.split("\n"));
-  //     });
-  // });
+  const [word, setWord] = useState([]);
+  useEffect(() => {
+    test1().then((fetchedWord: any) => {
+      setWord(fetchedWord);
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -44,6 +35,7 @@ export default function App() {
           <input className="App-Input" type={"text"} maxLength={1} />
         </div>
         <p>API calling</p>
+        <p>{word[2]}</p>
       </div>
     </div>
   );
