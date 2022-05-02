@@ -14,6 +14,19 @@ async function test1() {
 }
 
 export default function App() {
+  const [inputs, setInputs] = useState({
+    letter1: "",
+    letter2: "",
+    letter3: "",
+    letter4: "",
+    letter5: "",
+  });
+  const handleChange = (e: any) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
   const [word, setWord] = useState([]);
   useEffect(() => {
     test1().then((fetchedWord: any) => {
@@ -28,13 +41,50 @@ export default function App() {
       </header>
       <div className="App-body">
         <div>
-          <input className="App-Input" type={"text"} maxLength={1} />
-          <input className="App-Input" type={"text"} maxLength={1} />
-          <input className="App-Input" type={"text"} maxLength={1} />
-          <input className="App-Input" type={"text"} maxLength={1} />
-          <input className="App-Input" type={"text"} maxLength={1} />
+          <input
+            className="App-Input"
+            name="letter1"
+            type={"text"}
+            maxLength={1}
+            onChange={handleChange}
+          />
+          <input
+            className="App-Input"
+            name="letter2"
+            type={"text"}
+            maxLength={1}
+            onChange={handleChange}
+          />
+          <input
+            className="App-Input"
+            name="letter3"
+            type={"text"}
+            maxLength={1}
+            onChange={handleChange}
+          />
+          <input
+            className="App-Input"
+            name="letter4"
+            type={"text"}
+            maxLength={1}
+            onChange={handleChange}
+          />
+          <input
+            className="App-Input"
+            name="letter5"
+            type={"text"}
+            maxLength={1}
+            onChange={handleChange}
+          />
         </div>
         <p>API calling</p>
+        <p>
+          Typed: {inputs.letter1}
+          {inputs.letter2}
+          {inputs.letter3}
+          {inputs.letter4}
+          {inputs.letter5}
+        </p>
         <p>{word[2]}</p>
       </div>
     </div>
