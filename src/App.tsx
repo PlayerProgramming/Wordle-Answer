@@ -34,6 +34,12 @@ export default function App() {
     });
   }, []);
 
+  const findAnswers = () => {
+    for(const eachWord of word){
+      
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -79,11 +85,8 @@ export default function App() {
         </div>
         <p>API calling</p>
         <p>
-          Typed: {inputs.letter1}
-          {inputs.letter2}
-          {inputs.letter3}
-          {inputs.letter4}
-          {inputs.letter5}
+          Typed: {inputs.letter1} {inputs.letter2} {inputs.letter3}{" "}
+          {inputs.letter4} {inputs.letter5}
         </p>
         <p>{word[2]}</p>
       </div>
