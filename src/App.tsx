@@ -23,7 +23,7 @@ export default function App() {
     letter4: "",
     letter5: "",
   });
-  const [wordLists, setWordLists] = useState([]);
+  const [wordLists, setWordLists] = useState<string[]>([]);
   const [wordAnswers, setWordAnswers] = useState<string[]>([]);
   const handleChange = (e: any) => {
     setInputs({
@@ -49,16 +49,22 @@ export default function App() {
       if (inputs.letter5 && inputs.letter5 !== eachWord[4]) {
         continue;
       }
-      tempArray.push(eachWord);
+
+      tempArray.push(eachWord.toUpperCase());
     }
     setWordAnswers(tempArray);
   };
+
   useEffect(() => {
-    wordArrays().then((fetchedWord: any) => {
-      setWordLists(fetchedWord);
-    });
-    findAnswers();
-  });
+    if (!wordLists.length) {
+      console.log("This fetch is loaded");
+      wordArrays().then((fetchedWord: any) => {
+        setWordLists(fetchedWord);
+      });
+    }
+    console.log("finished loading");
+    // findAnswers();
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -102,21 +108,21 @@ export default function App() {
             onChange={handleChange}
           />
         </div>
-        <p>API calling</p>
-        <p>
-          {/* Typed: {inputs.letter1} {inputs.letter2} {inputs.letter3}
-          {inputs.letter4} {inputs.letter5} */}
-        </p>
+
         {(inputs.letter1 ||
           inputs.letter2 ||
           inputs.letter3 ||
           inputs.letter4 ||
           inputs.letter5) && (
-          <p className="App-Answers">
+          <div className="App-Answers-Container">
             {wordAnswers?.map((word, i) => {
-              return <p key={i}>{word}</p>;
+              return (
+                <p className="App-Answers-Items" key={i}>
+                  {word}
+                </p>
+              );
             })}
-          </p>
+          </div>
         )}
       </div>
     </div>
