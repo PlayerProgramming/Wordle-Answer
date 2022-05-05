@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-async function test1() {
+async function wordArrays() {
   let arr;
   return await fetch(
     "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
@@ -12,6 +12,9 @@ async function test1() {
     });
 }
 
+// function test1() {}
+// test1();
+/*---------------------------  Render  -----------------------------*/
 export default function App() {
   const [inputs, setInputs] = useState({
     letter1: "",
@@ -20,24 +23,42 @@ export default function App() {
     letter4: "",
     letter5: "",
   });
+  const [wordLists, setWordLists] = useState([]);
+  const [wordAnswers, setWordAnswers] = useState<string[]>([]);
   const handleChange = (e: any) => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.toLowerCase(),
     });
   };
-  const [word, setWord] = useState([]);
-  useEffect(() => {
-    test1().then((fetchedWord: any) => {
-      setWord(fetchedWord);
-    });
-  }, []);
-
   const findAnswers = () => {
-    for (const eachWord of word) {
+    let tempArray: string[] = [];
+    for (const eachWord of wordLists) {
+      if (inputs.letter1 && inputs.letter1 !== eachWord[0]) {
+        continue;
+      }
+      if (inputs.letter2 && inputs.letter2 !== eachWord[1]) {
+        continue;
+      }
+      if (inputs.letter3 && inputs.letter3 !== eachWord[2]) {
+        continue;
+      }
+      if (inputs.letter4 && inputs.letter4 !== eachWord[3]) {
+        continue;
+      }
+      if (inputs.letter5 && inputs.letter5 !== eachWord[4]) {
+        continue;
+      }
+      tempArray.push(eachWord);
     }
+    setWordAnswers(tempArray);
   };
-
+  useEffect(() => {
+    wordArrays().then((fetchedWord: any) => {
+      setWordLists(fetchedWord);
+    });
+    findAnswers();
+  });
   return (
     <div className="App">
       <header className="App-header">
@@ -83,12 +104,21 @@ export default function App() {
         </div>
         <p>API calling</p>
         <p>
-          Typed: {inputs.letter1} {inputs.letter2} {inputs.letter3}{" "}
-          {inputs.letter4} {inputs.letter5}
+          {/* Typed: {inputs.letter1} {inputs.letter2} {inputs.letter3}
+          {inputs.letter4} {inputs.letter5} */}
         </p>
-        <p>{word[2]}</p>
+        {(inputs.letter1 ||
+          inputs.letter2 ||
+          inputs.letter3 ||
+          inputs.letter4 ||
+          inputs.letter5) && (
+          <p className="App-Answers">
+            {wordAnswers?.map((word, i) => {
+              return <p key={i}>{word}</p>;
+            })}
+          </p>
+        )}
       </div>
     </div>
   );
 }
-

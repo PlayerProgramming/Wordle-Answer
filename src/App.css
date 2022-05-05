@@ -26,7 +26,7 @@
   color: white;
 }
 .App-body {
-  margin-top: 2cm;
+  /* margin-top: 2cm; */
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -46,6 +46,11 @@
   color: #61dafb;
 }
 
+.App-Answers {
+  /* flex-direction: row; */
+  columns: 4 auto;
+  /* position: absolute; */
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
