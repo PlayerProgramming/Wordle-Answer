@@ -25,15 +25,39 @@ export default function App() {
   });
   const [wordLists, setWordLists] = useState<string[]>([]);
   const [wordAnswers, setWordAnswers] = useState<string[]>([]);
+  const [contained, setContained] = useState({
+    containedLetter: "",
+    noncontainedLetter: "",
+  });
+
   const handleChange = (e: any) => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value.toLowerCase(),
     });
   };
+  const containedChange = (e: any) => {
+    setContained({
+      ...contained,
+      [e.target.name]: e.target.value.toLowerCase(),
+    });
+  };
   const findAnswers = () => {
     let tempArray: string[] = [];
     for (const eachWord of wordLists) {
+      let breakCheck1 = false;
+      let breakCheck2 = false;
+      // if (contained.containedLetter) {
+      //   console.log("Checking contained")
+      //   for (const c of contained.containedLetter) {
+      //     if (!eachWord.includes(c)) continue;
+      //   }
+      // }
+      // if (contained.noncontainedLetter) {
+      //   for (const c of contained.noncontainedLetter) {
+      //     if (eachWord.includes(c)) continue;
+      //   }
+      // }
       if (inputs.letter1 && inputs.letter1 !== eachWord[0]) {
         continue;
       }
@@ -49,7 +73,20 @@ export default function App() {
       if (inputs.letter5 && inputs.letter5 !== eachWord[4]) {
         continue;
       }
-
+      for (const c of contained.containedLetter) {
+        console.log(c);
+        if (!eachWord.includes(c)) {
+          console.log("contained breaked");
+          breakCheck1 = true;
+        }
+      }
+      for (const c of contained.noncontainedLetter) {
+        if (eachWord.includes(c)) {
+          console.log("NON contained breaked");
+          breakCheck2 = true;
+        }
+      }
+      if (breakCheck1 || breakCheck2) continue;
       tempArray.push(eachWord.toUpperCase());
     }
     setWordAnswers(tempArray);
@@ -62,15 +99,32 @@ export default function App() {
         setWordLists(fetchedWord);
       });
     }
-    console.log("finished loading");
-    // findAnswers();
-  }, []);
+    if (inputs) {
+      findAnswers();
+    }
+  }, [inputs, contained]);
   return (
     <div className="App">
       <header className="App-header">
         <p>Wordle Answer</p>
       </header>
       <div className="App-body">
+        <div>
+          <input
+            className="App-Contain-Input"
+            name="containedLetter"
+            type={"text"}
+            // maxLength={5}
+            onChange={containedChange}
+          />
+          <input
+            className="App-Contain-Input"
+            name="noncontainedLetter"
+            type={"text"}
+            // maxLength={5}
+            onChange={containedChange}
+          />
+        </div>
         <div>
           <input
             className="App-Input"
