@@ -11,9 +11,6 @@ async function wordArrays() {
       return arr;
     });
 }
-
-// function test1() {}
-// test1();
 /*---------------------------  Render  -----------------------------*/
 export default function App() {
   const [inputs, setInputs] = useState({
@@ -141,6 +138,8 @@ export default function App() {
     setWordAnswers(tempArray);
   };
 
+  const clearInput = () => {};
+
   useEffect(() => {
     if (!wordLists.length) {
       console.log("This fetch is loaded");
@@ -224,6 +223,9 @@ export default function App() {
             maxLength={1}
             onChange={inputChange}
           />
+          <button style={{ width: 100, height: 100 }} onClick={clearInput}>
+            <p>Reset</p>
+          </button>
         </div>
 
         {(inputs.letter1 ||
