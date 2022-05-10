@@ -138,7 +138,16 @@ export default function App() {
     setWordAnswers(tempArray);
   };
 
-  const clearInput = () => {};
+  const clearInput = () => {
+    setInputs({
+      letter1: "",
+      letter2: "",
+      letter3: "",
+      letter4: "",
+      letter5: "",
+    });
+    setContained({ containedLetter: "", noncontainedLetter: "" });
+  };
 
   useEffect(() => {
     if (!wordLists.length) {
@@ -187,6 +196,7 @@ export default function App() {
             name="letter1"
             data-id="0"
             type={"text"}
+            value={inputs.letter1}
             maxLength={1}
             autoFocus={true}
             onChange={inputChange}
@@ -196,6 +206,7 @@ export default function App() {
             name="letter2"
             data-id="1"
             type={"text"}
+            value={inputs.letter2}
             maxLength={1}
             onChange={inputChange}
           />
@@ -204,6 +215,7 @@ export default function App() {
             name="letter3"
             data-id="2"
             type={"text"}
+            value={inputs.letter3}
             maxLength={1}
             onChange={inputChange}
           />
@@ -212,6 +224,7 @@ export default function App() {
             name="letter4"
             data-id="3"
             type={"text"}
+            value={inputs.letter4}
             maxLength={1}
             onChange={inputChange}
           />
@@ -220,6 +233,7 @@ export default function App() {
             name="letter5"
             data-id="4"
             type={"text"}
+            value={inputs.letter5}
             maxLength={1}
             onChange={inputChange}
           />
