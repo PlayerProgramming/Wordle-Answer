@@ -23,19 +23,16 @@ export default function App() {
 
   const [wordLists, setWordLists] = useState<string[]>([]);
   const [wordAnswers, setWordAnswers] = useState<string[]>([]);
-  const [contained, setContained] = useState({
-    containedLetter: "",
-    noncontainedLetter: "",
-  });
+  const [containedLetters, setContainedLetters] = useState("");
+  const [noncontainedLetters, setNonContainedLetters] = useState("");
 
   const inputChange = (e: any) => {
-    const { maxLength, value, name } = e.target;
+    const { maxLength, value } = e.target;
     const id = e.target.getAttribute("data-id");
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value.toLowerCase(),
     });
-
     if (value.length >= maxLength) {
       if (id < 4) {
         const nextInput = document.querySelector(
@@ -52,52 +49,24 @@ export default function App() {
   const containedChange = (e: any) => {
     const { value } = e.target;
     const lastChar = value.slice(-1);
-    const isLetter = /[a-zA-Z]/.test(lastChar);
+
+    const onlyLetters = e.target.value.replace(/[^a-zA-Z]/g, "");
+
     if (
-      isLetter &&
-      !contained.containedLetter.includes(lastChar) &&
-      !contained.noncontainedLetter.includes(lastChar) &&
-      e.target.name === "containedLetter"
+      e.target.name === "containedLetter" &&
+      !noncontainedLetters.includes(lastChar)
     ) {
-      setContained({
-        ...contained,
-        [e.target.name]: e.target.value.toLowerCase(),
-      });
-    } else if (
-      isLetter &&
-      !contained.containedLetter.includes(lastChar) &&
-      !contained.noncontainedLetter.includes(lastChar) &&
-      e.target.name === "noncontainedLetter"
+      setContainedLetters(Array.from(new Set(onlyLetters.split(""))).join(""));
+    }
+    if (
+      e.target.name === "noncontainedLetter" &&
+      !containedLetters.includes(lastChar)
     ) {
-      setContained({
-        ...contained,
-        [e.target.name]: e.target.value.toLowerCase(),
-      });
+      setNonContainedLetters(
+        Array.from(new Set(onlyLetters.split(""))).join("")
+      );
     }
   };
-
-  function containedKeyDown(e: any) {
-    if (e.code === "Backspace" && e.target.name === "containedLetter") {
-      setContained({
-        ...contained,
-        [e.target.name]: contained.containedLetter.slice(
-          0,
-          contained.containedLetter.length - 1
-        ),
-      });
-    } else if (
-      e.code === "Backspace" &&
-      e.target.name === "noncontainedLetter"
-    ) {
-      setContained({
-        ...contained,
-        [e.target.name]: contained.noncontainedLetter.slice(
-          0,
-          contained.containedLetter.length - 1
-        ),
-      });
-    }
-  }
 
   const findAnswers = () => {
     let tempArray: string[] = [];
@@ -119,14 +88,14 @@ export default function App() {
       if (inputs.letter5 && inputs.letter5 !== eachWord[4]) {
         continue;
       }
-      for (const c of contained.containedLetter) {
+      for (const c of containedLetters) {
         console.log(c);
         if (!eachWord.includes(c)) {
           console.log("contained breaked");
           breakCheck1 = true;
         }
       }
-      for (const c of contained.noncontainedLetter) {
+      for (const c of noncontainedLetters) {
         if (eachWord.includes(c)) {
           console.log("NON contained breaked");
           breakCheck2 = true;
@@ -146,7 +115,8 @@ export default function App() {
       letter4: "",
       letter5: "",
     });
-    setContained({ containedLetter: "", noncontainedLetter: "" });
+    setContainedLetters("");
+    setNonContainedLetters("");
   };
 
   useEffect(() => {
@@ -160,7 +130,7 @@ export default function App() {
       console.log("inputs detected");
       findAnswers();
     }
-  }, [inputs, contained]);
+  }, [inputs, containedLetters, noncontainedLetters]);
 
   return (
     <div className="App">
@@ -173,20 +143,18 @@ export default function App() {
           <input
             className="App-Contain-Input"
             name="containedLetter"
-            value={contained.containedLetter}
+            value={containedLetters}
             autoComplete="off"
             type={"text"}
             onChange={containedChange}
-            onKeyDown={containedKeyDown}
           />
           <p>Non-contained letter</p>
           <input
             className="App-Contain-Input"
             name="noncontainedLetter"
-            value={contained.noncontainedLetter}
+            value={noncontainedLetters}
             type={"text"}
             onChange={containedChange}
-            onKeyDown={containedKeyDown}
           />
         </div>
         <div>
