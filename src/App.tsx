@@ -47,7 +47,6 @@ export default function App() {
           );
           if (nextInput !== null) {
             (nextInput as HTMLElement).focus();
-            console.log("focused");
           }
         }
       }
@@ -57,6 +56,9 @@ export default function App() {
     const values = e.target.value;
     const lastChar = values.slice(-1);
     const onlyLetters = e.target.value.replace(/[^a-zA-Z]/g, "");
+    const nonContainedBreak = Object.values(inputs).some(
+      (x) => values.includes(x) && x !== ""
+    );
 
     /*Checking if lastChar is empty for deleting events */
     if (
@@ -67,7 +69,8 @@ export default function App() {
       setContainedLetters(Array.from(new Set(onlyLetters.split(""))).join(""));
     } else if (
       (e.target.name === "noncontainedLetter" &&
-        !containedLetters.includes(lastChar)) ||
+        !containedLetters.includes(lastChar) &&
+        !nonContainedBreak) ||
       (e.target.name === "noncontainedLetter" && lastChar === "")
     ) {
       setNonContainedLetters(
@@ -145,7 +148,7 @@ export default function App() {
         <div className="App-body-Inner-Container">
           <div className="App-Contained-Container">
             <div>
-              <p>Contained Letters</p>
+              <p className="App-Cotained-Text">Contained Letters</p>
               <input
                 className="App-Contain-Input"
                 name="containedLetter"
@@ -156,7 +159,7 @@ export default function App() {
               />
             </div>
             <div>
-              <p>Non-contained letter</p>
+              <p className="App-Cotained-Text">Non-contained letter</p>
               <input
                 className="App-Contain-Input"
                 name="noncontainedLetter"
@@ -167,7 +170,7 @@ export default function App() {
             </div>
           </div>
           <div className="App-Letter-Container">
-            <p>Letters</p>
+            <p className="App-Cotained-Text">Letters</p>
             <input
               className="App-Input"
               style={{ borderTopLeftRadius: 20, borderBottomLeftRadius: 20 }}
@@ -217,7 +220,7 @@ export default function App() {
               onChange={inputChange}
             />
             <button className="App-Reset" onClick={clearInput}>
-              <p>Reset</p>
+              <p className="App-Cotained-Text">Reset</p>
             </button>
           </div>
         </div>
@@ -240,3 +243,5 @@ export default function App() {
     </div>
   );
 }
+
+//PLIER
