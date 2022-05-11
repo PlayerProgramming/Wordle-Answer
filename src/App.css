@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5.5vh;
+  font-size: 6.2vw;
   /* font-size: calc(60px + 1vmin); */
   color: white;
 }
@@ -45,21 +45,22 @@
 }
 .App-body-Inner-Container {
   background-color: white;
-  width: 80%;
+  width: 50%;
   border-radius: 0.5cm;
+  padding-bottom: 1cm;
 }
 .App-Letter-Container {
   /* justify-content: center;
   align-items: center; */
-  margin-bottom: 0.2cm;
 }
 .App-Contained-Container {
+  align-items: center;
   justify-content: center;
   flex-direction: row;
   display: flex;
 }
-.App-Cotained-Text {
-  font-size: 1.8vh;
+.App-Contained-Text {
+  font-size: 0.8vw;
 }
 .App-Contain-Input {
   height: 60px;
@@ -70,24 +71,24 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
-  margin: 0.1cm;
 }
 
 .App-Input {
-  height: 7vh;
-  width: 15%;
+  height: 4vw;
+  width: 5vw;
   border-width: 0.1cm;
   border-color: #8eb58e;
   text-align: center;
   text-transform: uppercase;
-  font-size: 3vw;
+  font-size: 2vw;
 }
 .App-Reset {
   margin: 0.1cm;
   border-radius: 1cm;
-  width: 8vh;
-  height: 8vh;
-  font-size: 24px;
+  max-width: 150px;
+  max-height: 120px;
+  width: 15vmin;
+  height: 15vmin;
 }
 .App-Answers-Container {
   /* column-count: 4; */
@@ -98,7 +99,7 @@
   /* grid-gap: 20; */
   overflow-y: scroll;
   height: 100%;
-  width: 100vw;
+  width: 80vw;
   justify-content: center;
 }
 .App-Answers-Items {
