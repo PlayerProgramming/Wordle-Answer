@@ -80,7 +80,7 @@
   border-color: #8eb58e;
   text-align: center;
   text-transform: uppercase;
-  font-size: 30px;
+  font-size: 3vw;
 }
 .App-Reset {
   margin: 0.1cm;
@@ -99,14 +99,16 @@
   overflow-y: scroll;
   height: 100%;
   width: 100vw;
+  justify-content: center;
 }
 .App-Answers-Items {
   /* border-width: 0.5cm;
   border: solid wheat; */
+  text-align: center;
   margin: 0.1cm;
   background-color: white;
   border-radius: 1cm;
-  font-size: 3vw;
+  font-size: 1.5vw;
 }
 .App-Answers-Items-Container {
   /* border: solid wheat;
