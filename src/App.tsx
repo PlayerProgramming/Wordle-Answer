@@ -148,7 +148,7 @@ export default function App() {
         <div className="App-body-Inner-Container">
           <div className="App-Contained-Container">
             <div>
-              <p className="App-Contained-Text">Contained Letters</p>
+              <p className="App-Contained-Text">Contained</p>
               <input
                 className="App-Contain-Input"
                 name="containedLetter"
@@ -159,7 +159,7 @@ export default function App() {
               />
             </div>
             <div>
-              <p className="App-Contained-Text">Non-contained letter</p>
+              <p className="App-Contained-Text">Non-contained</p>
               <input
                 className="App-Contain-Input"
                 name="noncontainedLetter"
@@ -220,7 +220,7 @@ export default function App() {
               onChange={inputChange}
             />
             <button className="App-Reset" onClick={clearInput}>
-              <p className="App-Contained-Text">Reset</p>
+              <p className="App-Reset-Text">Reset</p>
             </button>
           </div>
         </div>

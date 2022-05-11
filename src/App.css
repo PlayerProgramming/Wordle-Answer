@@ -45,7 +45,8 @@
 }
 .App-body-Inner-Container {
   background-color: white;
-  width: 50%;
+  max-width: 1000px;
+  width: 65%;
   border-radius: 0.5cm;
   padding-bottom: 1cm;
 }
@@ -60,35 +61,39 @@
   display: flex;
 }
 .App-Contained-Text {
-  font-size: 0.8vw;
+  font-size: 1vw;
 }
 .App-Contain-Input {
-  height: 60px;
-  width: 70%;
+  height: 2.2vw;
+  width: 10vw;
+  margin: 0.5cm;
   border-width: 0.1cm;
   border-radius: 1cm;
   border-color: #8eb58e;
   text-align: center;
   text-transform: uppercase;
-  font-size: 30px;
+  font-size: 1.2vw;
 }
 
 .App-Input {
-  height: 4vw;
-  width: 5vw;
+  height: 2.2vw;
+  width: 4vw;
   border-width: 0.1cm;
   border-color: #8eb58e;
   text-align: center;
   text-transform: uppercase;
-  font-size: 2vw;
+  font-size: 1.2vw;
 }
 .App-Reset {
   margin: 0.1cm;
   border-radius: 1cm;
   max-width: 150px;
   max-height: 120px;
-  width: 15vmin;
-  height: 15vmin;
+  width: 12vw;
+  height: 10vw;
+}
+.App-Reset-Text {
+  font-size: 1vw;
 }
 .App-Answers-Container {
   /* column-count: 4; */
