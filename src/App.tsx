@@ -150,7 +150,7 @@ export default function App() {
             <div>
               <p className="App-Contained-Text">Contained</p>
               <input
-                className="App-Contain-Input"
+                className="App-Contained-Input"
                 name="containedLetter"
                 value={containedLetters}
                 autoComplete="off"
@@ -161,7 +161,7 @@ export default function App() {
             <div>
               <p className="App-Contained-Text">Non-contained</p>
               <input
-                className="App-Contain-Input"
+                className="App-Contained-Input"
                 name="noncontainedLetter"
                 value={noncontainedLetters}
                 type={"text"}
@@ -173,7 +173,7 @@ export default function App() {
             <p className="App-Contained-Text">Letters</p>
             <input
               className="App-Input"
-              style={{ borderTopLeftRadius: 20, borderBottomLeftRadius: 20 }}
+              style={{ borderTopLeftRadius: 10, borderBottomLeftRadius: 10 }}
               name="letter0"
               data-id="0"
               type={"text"}
@@ -211,7 +211,7 @@ export default function App() {
             />
             <input
               className="App-Input"
-              style={{ borderTopRightRadius: 20, borderBottomRightRadius: 20 }}
+              style={{ borderTopRightRadius: 10, borderBottomRightRadius: 10 }}
               name="letter4"
               data-id="4"
               type={"text"}

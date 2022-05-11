@@ -23,12 +23,15 @@
   text-align: center;
   align-items: center;
   background-color: #5fcfa2;
-  height: 100vh;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
 }
 
 .App-header {
   /* min-height: 100vh; */
-  height: 12%;
+  height: 12vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +41,8 @@
 }
 .App-body {
   /* margin-top: 2cm; */
-  height: 88%;
+  height: 88vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +50,7 @@
 .App-body-Inner-Container {
   background-color: white;
   max-width: 1000px;
-  width: 65%;
+  width: 90%;
   border-radius: 0.5cm;
   padding-bottom: 1cm;
 }
@@ -61,60 +65,71 @@
   display: flex;
 }
 .App-Contained-Text {
-  font-size: 1vw;
+  font-size: 2.4vmin;
 }
-.App-Contain-Input {
-  height: 2.2vw;
-  width: 10vw;
-  margin: 0.5cm;
-  border-width: 0.1cm;
-  border-radius: 1cm;
+.App-Contained-Input {
+  height: 10vw;
+  width: 30vw;
+  max-width: 450px;
+  max-height: 80px;
+  margin-left: 0.3cm;
+  margin-right: 0.3cm;
+
+  border-width: 0.08cm;
+  border-radius: 15px;
   border-color: #8eb58e;
   text-align: center;
   text-transform: uppercase;
-  font-size: 1.2vw;
+  font-size: 2.2vw;
+}
+@media screen and (max-width: 500px) {
+  .App-Contained-Input {
+    font-size: 22px;
+  }
 }
 
 .App-Input {
-  height: 2.2vw;
-  width: 4vw;
-  border-width: 0.1cm;
+  height: 10vmin;
+  width: 11vmin;
+  border-width: 0.08cm;
   border-color: #8eb58e;
   text-align: center;
   text-transform: uppercase;
-  font-size: 1.2vw;
+  font-size: 4vmin;
 }
 .App-Reset {
   margin: 0.1cm;
-  border-radius: 1cm;
+  border-radius: 10px;
   max-width: 150px;
   max-height: 120px;
   width: 12vw;
   height: 10vw;
+  justify-content: center;
+  align-items: center;
 }
 .App-Reset-Text {
-  font-size: 1vw;
+  font-size: 3vmin;
 }
 .App-Answers-Container {
   /* column-count: 4; */
   /* flex-direction: column; */
-  margin: 0.5cm;
+  margin: 0.2cm;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   /* grid-gap: 20; */
   overflow-y: scroll;
-  height: 100%;
-  width: 80vw;
+  height: 90%;
+  width: 90vw;
   justify-content: center;
 }
 .App-Answers-Items {
   /* border-width: 0.5cm;
   border: solid wheat; */
   text-align: center;
-  margin: 0.1cm;
+  margin: 0.05cm;
   background-color: white;
-  border-radius: 1cm;
-  font-size: 1.5vw;
+  border-radius: 0.2cm;
+  font-size: 3.5vmin;
 }
 .App-Answers-Items-Container {
   /* border: solid wheat;
