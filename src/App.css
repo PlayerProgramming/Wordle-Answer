@@ -54,10 +54,7 @@
   border-radius: 0.5cm;
   padding-bottom: 1cm;
 }
-.App-Letter-Container {
-  /* justify-content: center;
-  align-items: center; */
-}
+
 .App-Contained-Container {
   align-items: center;
   justify-content: center;
@@ -131,8 +128,4 @@
   border-radius: 0.2cm;
   font-size: 3.5vmin;
 }
-.App-Answers-Items-Container {
-  /* border: solid wheat;
 
-  border-width: 0.2cm; */
-}

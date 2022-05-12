@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
+import useFetch from "./useFetchURL";
 import "./App.css";
-async function wordArrays() {
-  let arr;
-  return await fetch(
-    "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
-  )
-    .then((words) => words.text())
-    .then((textedWords) => {
-      arr = textedWords.replace(/\r\n/g, "\n").split("\n");
-      return arr;
-    });
-}
 /*---------------------------  Main  -----------------------------*/
 export default function App() {
   const [inputs, setInputs] = useState({
@@ -20,8 +10,9 @@ export default function App() {
     letter3: "",
     letter4: "",
   });
-
-  const [wordLists, setWordLists] = useState<string[]>([]);
+  const wordLists: any[] = useFetch(
+    "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
+  );
   const [wordAnswers, setWordAnswers] = useState<string[]>([]);
   const [containedLetters, setContainedLetters] = useState("");
   const [noncontainedLetters, setNonContainedLetters] = useState("");
@@ -53,9 +44,14 @@ export default function App() {
     }
   };
   const containedChange = (e: any) => {
-    const values = e.target.value;
+    console.log("contained change detected");
+    console.log(e.which);
+    const values = e.target.value.toLowerCase();
+
     const lastChar = values.slice(-1);
-    const onlyLetters = e.target.value.replace(/[^a-zA-Z]/g, "");
+    const onlyLetters = values.replace(/[^a-zA-Z]/g, "");
+
+    console.log(onlyLetters);
     const nonContainedBreak = Object.values(inputs).some(
       (x) => values.includes(x) && x !== ""
     );
@@ -67,6 +63,8 @@ export default function App() {
       (e.target.name === "containedLetter" && lastChar === "")
     ) {
       setContainedLetters(Array.from(new Set(onlyLetters.split(""))).join(""));
+      console.log("Set CONTAINED Letters Runned");
+      console.log("New CONTAINED Letters: " + containedLetters);
     } else if (
       (e.target.name === "noncontainedLetter" &&
         !containedLetters.includes(lastChar) &&
@@ -76,6 +74,7 @@ export default function App() {
       setNonContainedLetters(
         Array.from(new Set(onlyLetters.split(""))).join("")
       );
+      console.log("New NON-CONTAINED Letters: " + noncontainedLetters);
     }
   };
   const findAnswers = () => {
@@ -123,12 +122,6 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (!wordLists.length) {
-      console.log("This fetch is loaded");
-      wordArrays().then((fetchedWord: any) => {
-        setWordLists(fetchedWord);
-      });
-    }
     if (
       !Object.values(inputs).every((x) => x === null || x === "") ||
       containedLetters !== "" ||
@@ -153,7 +146,7 @@ export default function App() {
                 className="App-Contained-Input"
                 name="containedLetter"
                 value={containedLetters}
-                autoComplete="off"
+                defaultValue={containedLetters}
                 type={"text"}
                 onChange={containedChange}
               />
@@ -169,7 +162,7 @@ export default function App() {
               />
             </div>
           </div>
-          <div className="App-Letter-Container">
+          <div>
             <p className="App-Contained-Text">Letters</p>
             <input
               className="App-Input"
@@ -223,6 +216,7 @@ export default function App() {
               <p className="App-Reset-Text">Reset</p>
             </button>
           </div>
+          <p>{containedLetters}</p>
         </div>
         {(inputs.letter0 ||
           inputs.letter1 ||
@@ -233,7 +227,7 @@ export default function App() {
           noncontainedLetters) && (
           <div className="App-Answers-Container">
             {wordAnswers?.map((word, i) => (
-              <div key={i} className="App-Answers-Items-Container">
+              <div key={i}>
                 <p className="App-Answers-Items">{word}</p>
               </div>
             ))}
