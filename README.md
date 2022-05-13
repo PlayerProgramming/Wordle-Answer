@@ -6,6 +6,8 @@
 
 ## Introduction
 ### A light website using React with TypeScript to provide 5 letters word answers while typing for the one of the most popular simple web game called Wordle.
+#### The reason I decided to create this project was because other Wordle Solver websites are required to press "search" or "update" button to show the result.  
+I just wanted to show answers immediately as user is typing.
 ---
 ## How to check the app out
 
