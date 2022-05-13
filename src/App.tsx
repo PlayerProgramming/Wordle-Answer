@@ -11,7 +11,7 @@ export default function App() {
     letter4: "",
   });
   const wordLists: any[] = useFetch(
-    "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
+    "https://raw.githubusercontent.com/PlayerProgramming/Wordle-Answer/main/src/five-letter-words.txt"
   );
   const [wordAnswers, setWordAnswers] = useState<string[]>([]);
   const [containedLetters, setContainedLetters] = useState("");
@@ -63,8 +63,6 @@ export default function App() {
       (e.target.name === "containedLetter" && lastChar === "")
     ) {
       setContainedLetters(Array.from(new Set(onlyLetters.split(""))).join(""));
-      console.log("Set CONTAINED Letters Runned");
-      console.log("New CONTAINED Letters: " + containedLetters);
     } else if (
       (e.target.name === "noncontainedLetter" &&
         !containedLetters.includes(lastChar) &&
@@ -74,7 +72,6 @@ export default function App() {
       setNonContainedLetters(
         Array.from(new Set(onlyLetters.split(""))).join("")
       );
-      console.log("New NON-CONTAINED Letters: " + noncontainedLetters);
     }
   };
   const findAnswers = () => {
@@ -216,7 +213,6 @@ export default function App() {
               <p className="App-Reset-Text">Reset</p>
             </button>
           </div>
-          <p>{containedLetters}</p>
         </div>
         {(inputs.letter0 ||
           inputs.letter1 ||
