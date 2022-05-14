@@ -10,7 +10,7 @@
 ---
 ## How to check the app out
 
-### 1. Using the website for website
+### 1. Using the website
 1. Go to https://hjk-wordle-answer.vercel.app/
 
 ### 2. Locally
